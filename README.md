@@ -1,5 +1,5 @@
 # csgoDL
-This is a small graphical user interface to launch dedicated Counter-Strike: Global Offensive servers more easily (from Windows).
+This is a small graphical user interface to launch dedicated Counter-Strike: Global Offensive servers more easily (from Windows). ([Download](https://github.com/merschformann/csgoDL/releases/tag/0.5))
 I wrote this code a while ago myself and did not really care about efficiency and structure too much. Hence, please be nice. ;)
 
 ## Current status ##
