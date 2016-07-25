@@ -1,0 +1,51 @@
+# Basics
+SRCDSPath=F:\SteamCommand3\steamapps\common\Counter-Strike Global Offensive Beta - Dedicated Server
+Hostname=CS:GO Server - launched by csgoDL
+Port=27015
+GSLT=
+ServerPW=
+RCONPW=49680651
+GameType=ClassicCompetitive
+MaxPlayers=10
+TickRate=128
+# WeaponProgressionT
+glock=1
+elite=1
+p90=1
+xm1014=1
+galilar=1
+ak47=1
+sg556=1
+awp=1
+negev=1
+scar20=1
+# WeaponProgressionCT
+usp_silencer=1
+elite=1
+p90=1
+xm1014=1
+famas=1
+m4a1_silencer=1
+aug=1
+awp=1
+negev=1
+g3sg1=1
+# MOTD
+http://blog.counter-strike.net/motd/motd.php
+# ServerCFG
+mp_freezetime 5
+mp_join_grace_time 15
+mp_match_end_restart 0
+mp_autokick 0
+sv_cheats 0
+sv_lan 0
+bot_difficulty 2
+bot_join_after_player 1
+bot_quota 10
+bot_quota_mode "fill"
+bot_defer_to_human_goals 0
+bot_defer_to_human_items 0
+exec banned_user.cfg
+exec banned_ip.cfg
+writeid
+writeip

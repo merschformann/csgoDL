@@ -1,0 +1,114 @@
+﻿<Window x:Class="csgoDL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="csgo:DedicatedLauncher" Height="600" Width="600" MinWidth="525" MinHeight="350">
+
+    <TabControl Grid.Row="0" TabStripPlacement="Top" Margin="2">
+        <TabItem Name="tabControl" Header="Controls" ToolTip="Control the server">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <WrapPanel Grid.Row="0" Orientation="Horizontal" Margin="2">
+                    <Button x:Name="ButtonStart" Click="ButtonStart_Click" Background="Transparent" BorderBrush="Transparent" Margin="2" ToolTip="Starts the server">
+                        <Image x:Name="ImageStart" Width="20" Height="20" Source="data/start.png"></Image>
+                    </Button>
+                    <Button x:Name="ButtonStop" Click="ButtonStop_Click" Background="Transparent" BorderBrush="Transparent" Margin="2" IsEnabled="False" ToolTip="Kills the server (preferably type exit in the server's console to shutdown the server)">
+                        <Image x:Name="ImageStop" Width="20" Height="20" Source="data/stop.png" Visibility="Hidden"></Image>
+                    </Button>
+                </WrapPanel>
+                <TextBox x:Name="OutputTextBox" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" TextWrapping="Wrap" FontFamily="Consolas" Focusable="False"/>
+            </Grid>
+        </TabItem>
+        <TabItem Name="tabSettings" Header="Basic Settings" ToolTip="Define the basic settings for the server">
+            <StackPanel Orientation="Vertical">
+                <GroupBox Header="Setup I/O">
+                    <WrapPanel Orientation="Horizontal" Margin="2">
+                        <Button x:Name="ButtonLoadSetup" Click="ButtonLoadSetup_Click" Background="Transparent" BorderBrush="Transparent" Margin="2" ToolTip="Load the basic setup from a file">
+                            <Image x:Name="ImageLoadSetup" Width="20" Height="20" Source="data/open.png"></Image>
+                        </Button>
+                        <Button x:Name="ButtonSaveSetup" Click="ButtonSaveSetup_Click" Background="Transparent" BorderBrush="Transparent" Margin="2" ToolTip="Store the basic setup to a file">
+                            <Image x:Name="ImageSaveSetup" Width="20" Height="20" Source="data/save.png"></Image>
+                        </Button>
+                    </WrapPanel>
+                </GroupBox>
+                <GroupBox Header="Paths">
+                    <StackPanel Orientation="Vertical">
+                        <WrapPanel Orientation="Horizontal" Margin="2">
+                            <TextBlock Height="20" TextWrapping="Wrap" Text="Path to srcds.exe: " VerticalAlignment="Center" Margin="2"/>
+                            <TextBox Height="22" Width="300" Text="" Name="BoxSRCDSPath" ToolTip="Path to the server executable"/>
+                            <Button x:Name="ButtonSearchExe" Click="ButtonSearchExe_Click" Background="Transparent" BorderBrush="Transparent" Margin="2" ToolTip="Search the srcds.exe">
+                                <Image x:Name="ImageSearchExe" Width="20" Height="20" Source="data/search.png"></Image>
+                            </Button>
+                        </WrapPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Network">
+                    <WrapPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Height="20" TextWrapping="Wrap" Text="Hostname: " VerticalAlignment="Center" Margin="2"/>
+                        <TextBox Name="BoxHostName" Height="22" Width="270" ToolTip="The name of the server" Text="CS:GO Server - launched by csgoDL"/>
+                        <TextBlock Height="20" TextWrapping="Wrap" Text="Port: " VerticalAlignment="Center" Margin="2"/>
+                        <TextBox Name="BoxPort" Height="22" Width="45" ToolTip="The port number to use" Text="27015"/>
+                    </WrapPanel>
+                </GroupBox>
+                <GroupBox Header="Account">
+                    <WrapPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Height="20" TextWrapping="Wrap" Text="GSLT: " VerticalAlignment="Center" Margin="2"/>
+                        <TextBox Name="BoxGSLT" Height="22" Width="270" ToolTip="The game server login token to use (if left empty play is restricted to LAN)"/>
+                    </WrapPanel>
+                </GroupBox>
+                <GroupBox Header="Access">
+                    <WrapPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Height="20" TextWrapping="Wrap" Text="Server PW: " VerticalAlignment="Center" Margin="2"/>
+                        <TextBox Name="BoxServerPassword" Height="22" Width="120" ToolTip="The password necessary to join the server (leave empty to disable restricted server access)" Text=""/>
+                        <TextBlock Height="20" TextWrapping="Wrap" Text="RCON PW: " VerticalAlignment="Center" Margin="2"/>
+                        <TextBox Name="BoxRCONPassword" Height="22" Width="120" ToolTip="The password for RCON admin access" Text=""/>
+                    </WrapPanel>
+                </GroupBox>
+                <GroupBox Header="Game">
+                    <WrapPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Height="20" TextWrapping="Wrap" Text="GameType: " VerticalAlignment="Center" Margin="2"/>
+                        <ComboBox x:Name="ComboBoxGameType" Margin="2" VerticalAlignment="Center" Width="140" SelectedIndex="3" SelectedValuePath="Content" ToolTip="Select the gametype to run">
+                            <ComboBoxItem>ArmsRace</ComboBoxItem>
+                            <ComboBoxItem>Demolition</ComboBoxItem>
+                            <ComboBoxItem>ClassicCasual</ComboBoxItem>
+                            <ComboBoxItem>ClassicCompetitive</ComboBoxItem>
+                            <ComboBoxItem>Deathmatch</ComboBoxItem>
+                        </ComboBox>
+                        <TextBlock Height="20" TextWrapping="Wrap" Text="MaxPlayers: " VerticalAlignment="Center" Margin="2"/>
+                        <TextBox Height="20" Width="33" Text="10" Name="BoxMaxPlayers" ToolTip="The number of maximal players"/>
+                        <TextBlock Height="20" TextWrapping="Wrap" Text="Tickrate: " VerticalAlignment="Center" Margin="2"/>
+                        <TextBox Height="20" Width="33" Text="128" Name="BoxTickRate" ToolTip="The tickrate of the server (reccomended: 64 or 128)"/>
+                    </WrapPanel>
+                </GroupBox>
+            </StackPanel>
+        </TabItem>
+        <TabItem Name="tabWeaponProgressionT" Header="Weapon Progression (T)" ToolTip="Define the weapon progression for Arms Race and Demolition (Terrorists)">
+            <DataGrid Name="gridWeaponProgressionT" ItemsSource="{Binding}"/>
+        </TabItem>
+        <TabItem Name="tabWeaponProgressionCT" Header="Weapon Progression (CT)" ToolTip="Define the weapon progression for Arms Race and Demolition (Counter-Terrorists)">
+            <DataGrid Name="gridWeaponProgressionCT" ItemsSource="{Binding}"/>
+        </TabItem>
+        <TabItem Name="tabMOTD" Header="MOTD" ToolTip="Setup the server's message of the day">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Height="20" TextWrapping="Wrap" Text="MOTD: " VerticalAlignment="Center" Margin="2"/>
+                <TextBox Grid.Row="1" Name="BoxMOTD" AcceptsReturn="True" TextWrapping="Wrap" Text="http://blog.counter-strike.net/motd/motd.php" ToolTip="This content is written to the MOTD-file" FontFamily="Consolas"/>
+            </Grid>
+        </TabItem>
+        <TabItem Name="tabServerCFG" Header="CFG" ToolTip="Setup additional commands executed at server init">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Height="20" TextWrapping="Wrap" Text="Additonal settings: " VerticalAlignment="Center" Margin="2"/>
+                <TextBox Grid.Row="1" Name="BoxServerCFG" AcceptsReturn="True" TextWrapping="Wrap" ToolTip="This content is written to the server cfg" FontFamily="Consolas"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
